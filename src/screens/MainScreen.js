@@ -1,7 +1,9 @@
 import React from 'react'
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons'
 import { DATA } from '../data'
 import { Post } from '../components/Post'
+import { AppHeaderIcon } from '../components/AppHeaderIcon'
 
 export const MainScreen = ({ navigation }) => {
   const openPostHandler = post => {
@@ -20,7 +22,16 @@ export const MainScreen = ({ navigation }) => {
 }
 
 MainScreen.navigationOptions = {
-  headerTitle: 'Мой блог'
+  headerTitle: 'Мой блог',
+  headerRight: (
+    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+      <Item
+        title='Take photo'
+        iconName='ios-camera'
+        onPress={() => console.log('Press photo')}
+      />
+    </HeaderButtons>
+  )
 }
 
 const styles = StyleSheet.create({
