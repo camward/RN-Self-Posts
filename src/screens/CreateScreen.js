@@ -1,10 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import {
   View,
   Text,
   StyleSheet,
   TextInput,
-  Image,
   Button,
   ScrollView,
   TouchableWithoutFeedback,
@@ -20,7 +19,7 @@ import { PhotoPicker } from '../components/PhotoPicker'
 export const CreateScreen = ({ navigation }) => {
   const dispatch = useDispatch()
   const [text, setText] = useState('')
-  const imgRef = useRef()
+  const [imgRef, setImgRef] = useState('')
 
   const saveHandler = () => {
     const post = {
@@ -34,7 +33,7 @@ export const CreateScreen = ({ navigation }) => {
   }
 
   const photoPickHandler = uri => {
-    imgRef.current = uri
+    setImgRef({current: uri})
   }
 
   return (
@@ -54,7 +53,7 @@ export const CreateScreen = ({ navigation }) => {
             title='Создать пост'
             color={THEME.MAIN_COLOR}
             onPress={saveHandler}
-            disabled={!text}
+            disabled={!text || !imgRef}
           />
         </View>
       </TouchableWithoutFeedback>
